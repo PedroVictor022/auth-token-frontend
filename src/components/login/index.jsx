@@ -1,17 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ButtonContainer, Container, FormContainer, InputContainer, TitleContainer } from "./styles";
+import { Link, Navigate } from "react-router-dom";
+import { AuthContext } from "../../context/auth";
 
 export default function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const { singInUser, signed } = useContext(AuthContext);
 
-  return (
+  const handleSingIn = async (e) => {
+    e.preventDefault();
+    const data = {
+      email,
+      password
+    }
+    await singInUser(data)
+  }
+
+  if(signed) {
+    return <Navigate to="home"/>
+  } else {
+    return (
     <Container>
       <TitleContainer>
         <h1>Welcome to Sabre</h1>
         <p>Your system more security</p>
       </TitleContainer>
-      <FormContainer>
+      <FormContainer onSubmit={handleSingIn}>
         <InputContainer>
           <label htmlFor="email">Email</label>
           <input 
@@ -30,10 +45,13 @@ export default function Login() {
           />
         </InputContainer>
         <ButtonContainer>
-          <button>Login</button>
-          <button>Create account</button>
+          <button type="submit">Login</button>
+          <Link to="/register">Create account</Link>
         </ButtonContainer>
       </FormContainer>
     </Container>
   )
+  }
+
+  
 }

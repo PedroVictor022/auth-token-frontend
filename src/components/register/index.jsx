@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ButtonContainer, Container, FormContainer, InputContainer, TitleContainer } from "./styles";
 import { api } from "../../services/api";
+import { Link } from "react-router-dom";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -52,6 +53,7 @@ export default function Register() {
         </InputContainer>
         <ButtonContainer>
           <button type="submit">Create account</button>
+          <Link to="/">Login</Link>
         </ButtonContainer>
       </FormContainer>
     </Container>

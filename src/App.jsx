@@ -2,13 +2,20 @@ import { useState } from "react";
 import Login from "./components/login/index.jsx";
 import styled from "styled-components";
 import Register from "./components/register/index.jsx";
+import { AppRouter } from "./routes/index.jsx";
+// import AuthProvider from "./context/auth.js";
 
 function App() {
   return (
     <Container>
-      {/* <Login /> */}
-      <Register />
+      <AppRouter />
     </Container>
+    // <AuthProvider>
+    // <Container>
+    //   {/* <Login /> */}
+    //   <Register />
+    // </Container>
+    // </AuthProvider>
   );
 }
 
